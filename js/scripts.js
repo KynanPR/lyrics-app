@@ -1,3 +1,5 @@
-let alert_text = 'Hello world'
+let myName = 'Kynan';
+alert(myName);
 
-alert(alert_text);
+let favouriteFood = 'Dunno really. This question is too profound to have the answer fit into a simple JS var';
+document.write(favouriteFood);
