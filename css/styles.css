@@ -1,0 +1,71 @@
+:root {
+  /* Colours */
+  --primary-color: #5a0aa6;
+  --primary-color__lighter: #8e24f2;
+  --primary-color__darker: #400776;
+  --secondary-color: #d96716;
+  --background-color: #ccc;
+  --background-color__darker: grey;
+  --text-color__light: #fff;
+  --text-color__dark: #000;
+  /* Font Weights & Sizes */
+  --font-weight__normal: 400;
+  --font-weight__thicc: 700;
+  --font-size__standard: 16px;
+  /* Paddings, Margins & Borders */
+  --padding__standard: 10px;
+  --padding__thin: 5px;
+  --margin__standard: 15px;
+  /* Responsive Design Ranges */
+  --responsive-grid__min-width: 500px;
+  --responsive-grid__max-width: 750px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--background-color);
+  font-family: 'Lato', sans-serif;
+  font-weight: var(--font-weight__normal);
+  font-size: var(--font-size__standard);
+  line-height: 1.6;
+}
+
+main {
+  margin-left: var(--margin__standard);
+  margin-right: var(--margin__standard);
+}
+
+h1 {
+  font-size: 30px;
+  font-weight: var(--font-weight__thicc);
+}
+
+h2 {
+  font-size: 24px;
+  font-weight: var(--font-weight__thicc);
+}
+
+h3 {
+  font-size: 18px;
+  font-weight: var(--font-weight__thicc);
+}
+
+a {
+  color: var(--primary-color);
+}
+
+a:visited {
+  color: var(--primary-color__lighter);
+}
+
+a:hover,
+a:focus {
+  text-decoration: none;
+}
+
+a:active {
+  color: var(--secondary-color);
+}
