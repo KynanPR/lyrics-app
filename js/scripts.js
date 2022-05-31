@@ -1,7 +1,6 @@
 // Create array for pokemon
 let pokemonList = [];
 
-
 // Create pokemon objects in pokemonList array
 pokemonList.push(
   {
@@ -36,10 +35,10 @@ for (let i = 0, writeText = '', heightComment = ''; i < pokemonList.length; i++)
   let heightComment = '<i> - So small and cute!</i>';
 
   // Create text to write. Only add comment to end of height if <= 0.5
-  if (height <= 0.5) { //Cuteness check
-    document.write('<p><b>Pokemon' + number + '\'s Name: </b>' + name + '<br><b>Pokemon' + number + '\'s Height: </b>' + height + 'm' + heightComment + '</p>'')
+  if (height <= 0.5) { // Cuteness check
+    document.write('<p><b>Pokemon' + number + '\'s Name: </b>' + name + '<br><b>Pokemon' + number + '\'s Height: </b>' + height + 'm' + heightComment + '</p>');
   } else {
-    document.write('<p><b>Pokemon' + number + '\'s Name: </b>' + name + '<br><b>Pokemon' + number + '\'s Height: </b>' + height + 'm</p>')
+    document.write('<p><b>Pokemon' + number + '\'s Name: </b>' + name + '<br><b>Pokemon' + number + '\'s Height: </b>' + height + 'm</p>');
   }
 
   // Write text to DOM
