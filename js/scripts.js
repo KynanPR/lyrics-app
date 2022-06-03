@@ -1,38 +1,52 @@
-// Create array for pokemon
-let pokemonList = [];
-
 // Create array of pokemon types
-let pokemonTypes = [
+const pokemonTypes = [
   'Fire',
   'Water',
   'Grass',
   'Poison',
 ];
 
-// Create pokemon objects in pokemonList array
-pokemonList.push(
-  {
-    name: 'Charmander',
-    height: 0.7,
-    types: [pokemonTypes[0]],
-  }
-);
+// Setup IIFE to protect pokemonList
+// Create pokemonRepository object with properies of add & getAll functions
+let pokemonRepository = (function() {
+  let pokemonList = [];
 
-pokemonList.push(
-  {
-    name: 'Bulbasaur',
-    height: 0.7,
-    types: [pokemonTypes[2], pokemonTypes[3]],
+  // Create function to add pokemon to pokemonList
+  function add(pokemon) {
+    pokemonList.push(pokemon);
   }
-);
 
-pokemonList.push(
-  {
-    name: 'Squirtle',
-    height: 0.5,
-    types: [pokemonTypes[1]],
+  // Create function that returns pokemonList
+  function getAll() {
+    return pokemonList;
   }
-);
+
+  // console.log(pokemonList);
+
+  // Make above delcared functions the properties of pokemonRepository
+  return {
+    add: add,
+    getAll: getAll,
+  };
+})();
+
+pokemonRepository.add({
+  name: 'Charmander',
+  height: 0.7,
+  types: [pokemonTypes[0]],
+});
+
+pokemonRepository.add({
+  name: 'Bulbasaur',
+  height: 0.7,
+  types: [pokemonTypes[2], pokemonTypes[3]],
+});
+
+pokemonRepository.add({
+  name: 'Squirtle',
+  height: 0.5,
+  types: [pokemonTypes[1]],
+});
 
 function getCuteMessage(height) {
   return height <= 0.5 ? '<i> - So small and cute!</i>' : '';
@@ -53,4 +67,4 @@ function writePokemon(pokemon, i) {
   document.write(writeText);
 }
 
-pokemonList.forEach(writePokemon);
+pokemonRepository.getAll().forEach(writePokemon);
