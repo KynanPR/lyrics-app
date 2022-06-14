@@ -1,4 +1,4 @@
-// Create array of pokemon types
+// Create array of Pokemon types
 const pokemonTypes = [
   'Fire',
   'Water',
