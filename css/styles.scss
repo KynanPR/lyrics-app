@@ -1,0 +1,140 @@
+/* Colours */
+$primary-color: #5a0aa6;
+$primary-color__lighter: lighten($primary-color, 20%);
+$primary-color__darker: darken($primary-color, 20%);
+$secondary-color: #d96716;
+$background-color: #ccc;
+$background-color__darker: grey;
+$text-color__light: #fff;
+$text-color__dark: #000;
+/* Font Weights & Sizes */
+$font-weight__normal: 400;
+$font-weight__thicc: 700;
+$font-size__standard: 16px;
+/* Paddings, Margins & Borders */
+$padding__standard: 10px;
+$padding__thin: 5px;
+$margin__standard: 10px;
+$margin__thin: 5px;
+$border__standard: 4px;
+$border__thin: 2px;
+/* Responsive Design Ranges */
+$responsive-grid__min-width: 500px;
+$responsive-grid__max-width: 750px;
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: $background-color;
+  font-family: 'Lato', sans-serif;
+  font-weight: $font-weight__normal;
+  font-size: $font-size__standard;
+  line-height: 1.6;
+}
+
+main {
+  margin-left: $margin__standard;
+  margin-right: $margin__standard;
+}
+
+%headings {
+  font-weight: $font-weight__thicc;
+}
+
+h1 {
+  @extend %headings;
+  font-size: 30px;
+}
+
+h2 {
+  @extend %headings;
+  font-size: 24px;
+}
+
+h3 {
+  @extend %headings;
+  font-size: 18px;
+}
+
+a {
+  color: $primary-color;
+}
+
+a:visited {
+  color: $primary-color__lighter;
+}
+
+a:hover,
+a:focus {
+  text-decoration: none;
+}
+
+a:active {
+  color: $secondary-color;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+button {
+  border: none;
+  font-family: inherit;
+  background-color: $primary-color;
+  font-size: $font-size__standard;
+  color: $text-color__light;
+  text-decoration: none;
+  padding: $padding__standard;
+  transition-duration: 0.2s;
+  transition-property: opacity;
+}
+
+.main-list {
+  margin: $margin__standard;
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+}
+
+%main-list__button--shared {
+  background-color: $primary-color;
+  font-weight: $font-weight__thicc;
+  border-radius: 5px;
+}
+
+.main-list__button {
+    @extend %main-list__button--shared;
+  font-size: 30px;
+  text-align: justify;
+  padding-right: $padding__standard;
+  margin: $margin__thin;
+  max-width: 500px;
+  min-width: 250px;
+  width: fit-content;
+  box-shadow: 3px 5px 4px gray;
+}
+
+.main-list__button--active {
+  opacity: 0.8;
+}
+
+button:hover,
+button:focus,
+.button:hover,
+.button:focus {
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+@media all and (max-width: 750px) {
+  h1 {
+    font-size: 22px;
+  }
+  .main-list {
+      width: 350;
+  }
+}
