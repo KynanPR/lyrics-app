@@ -21,12 +21,32 @@ let pokemonRepository = (function() {
     return pokemonList;
   }
 
-  // console.log(pokemonList);
+  // Create function to add pokemon button item to DOM and display on page
+  function addListItem(pokemon) {
+    let name = pokemon.name;
+    let writeList = document.querySelector('.main-list');
+    let listItem = document.createElement('li');
+    let listItemButton = document.createElement('button');
+
+    listItemButton.innerText = name;
+    listItemButton.classList.add('main-list__button');
+    listItemButton.addEventListener('click', function(event) {
+      showDetails(pokemon);
+    });
+    listItem.appendChild(listItemButton);
+    writeList.appendChild(listItem);
+  }
+
+  // Placeholder function. To show details of clicked pokemon
+  function showDetails(pokemon) {
+    console.log(pokemon);
+  }
 
   // Make above delcared functions the properties of pokemonRepository
   return {
     add: add,
     getAll: getAll,
+    addListItem: addListItem,
   };
 })();
 
@@ -52,19 +72,4 @@ function getCuteMessage(height) {
   return height <= 0.5 ? '<i> - So small and cute!</i>' : '';
 }
 
-function writePokemon(pokemon, i) {
-  // Simpler local vars
-  let name = pokemon.name;
-  let height = pokemon.height;
-  let cuteMessage = getCuteMessage(height);
-
-  writeText = `<p>
-  <b>Pokemon ${i + 1}'s Name:</b> ${name}<br>
-  <b>Pokemon ${i + 1}'s Height:</b> ${height}m${cuteMessage}
-  </p>`;
-
-  // Write text to DOM
-  document.write(writeText);
-}
-
-pokemonRepository.getAll().forEach(writePokemon);
+pokemonRepository.getAll().forEach(pokemonRepository.addListItem);
