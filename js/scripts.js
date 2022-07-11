@@ -1,15 +1,8 @@
-// Create array of Pokemon types
-const pokemonTypes = [
-  'Fire',
-  'Water',
-  'Grass',
-  'Poison',
-];
-
 // Setup IIFE to protect pokemonList
 // Create pokemonRepository object with properies of add & getAll functions
 let pokemonRepository = (function() {
   let pokemonList = [];
+  let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
 
   // Create function to add pokemon to pokemonList
   function add(pokemon) {
@@ -39,7 +32,41 @@ let pokemonRepository = (function() {
 
   // Placeholder function. To show details of clicked pokemon
   function showDetails(pokemon) {
-    console.log(pokemon);
+    console.log('Before load details:', pokemon);
+    loadDetails(pokemon).then(function() {
+      console.log('After load details:', pokemon);
+    });
+  }
+
+  // Fetch base pokemon list from API and add each one to pokemonList
+  function loadList() {
+    return fetch(apiUrl).then(function(response) {
+      return response.json();
+    }).then(function(json) {
+      json.results.forEach(function(item) {
+        let pokemon = {
+          name: item.name,
+          detailsUrl: item.url,
+        };
+        add(pokemon);
+      });
+    }).catch(function(error) {
+      console.error(error);
+    });
+  }
+
+  // Fetch and load details of given pokemon object
+  function loadDetails(item) {
+    let url = item.detailsUrl;
+    return fetch(url).then(function(response) {
+      return response.json();
+    }).then(function(details) {
+      item.imageUrl = details.sprites.front_default;
+      item.height = details.height;
+      item.types = details.types;
+    }).catch(function(error) {
+      console.error(error);
+    });
   }
 
   // Make above delcared functions the properties of pokemonRepository
@@ -47,29 +74,18 @@ let pokemonRepository = (function() {
     add: add,
     getAll: getAll,
     addListItem: addListItem,
+    loadList: loadList,
+    loadDetails: loadDetails,
   };
 })();
 
-pokemonRepository.add({
-  name: 'Charmander',
-  height: 0.7,
-  types: [pokemonTypes[0]],
-});
-
-pokemonRepository.add({
-  name: 'Bulbasaur',
-  height: 0.7,
-  types: [pokemonTypes[2], pokemonTypes[3]],
-});
-
-pokemonRepository.add({
-  name: 'Squirtle',
-  height: 0.5,
-  types: [pokemonTypes[1]],
+// Fetch pokemon from API then add them to DOM
+pokemonRepository.loadList().then(function() {
+  pokemonRepository.getAll().forEach(function(pokemon) {
+    pokemonRepository.addListItem(pokemon);
+  });
 });
 
 function getCuteMessage(height) {
   return height <= 0.5 ? '<i> - So small and cute!</i>' : '';
 }
-
-pokemonRepository.getAll().forEach(pokemonRepository.addListItem);
